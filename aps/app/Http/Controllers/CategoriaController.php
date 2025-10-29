@@ -14,12 +14,18 @@ class CategoriaController extends Controller
         return view('categorias', compact('categorias'));
     }
 
-    public function insert(Request $request){
-        Categoria::create([
-            'nome'=>$request->input('nome')
+    public function store(Request $request){
+        // Validação
+        $validated = $request->validate([
+        'nome' => 'required|max:255',
         ]);
 
-        return redirect(url()->current());
+        // Inserção
+        Categoria::create([
+            'nome'=>$request->input('nome')
+        ]);     
+
+        return redirect(url()->route('categorias.index'));
 
     }
 }

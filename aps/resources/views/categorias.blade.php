@@ -7,11 +7,23 @@
 </head>
 <body>
     
-    Categorias
+    <h1>Categorias</h1>
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
     <form action="/categorias" method="post">
         @csrf
-        <input type="text" name="nome" id="nome">
+        <label> Nome da Categoria
+            <input type="text" name="nome" id="nome" placeholder="Docinhos" required>
+        </label>
         <input type="submit" value="Inserir">
     </form>
     <ul>
